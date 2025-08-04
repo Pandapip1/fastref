@@ -43,13 +43,13 @@ def entry_point():
     n_cpus_gromacs = 12
     n_gpus_gromacs = 1
 
-    sim_name = "TODO_RUNFASTALT_SIM_NAME"  # CHANGE!
-    # Name to give the job on your queueing system
+    sim_names = [ "1NEP" "1EXM" ]
 
     top_filename = f"{input_dir}/{sim_name}.top"
-    mdp_filename = (
-        "/mnt/pure/bowmanlab/WG-shahlo/projects/Ab_dynamics/simulations/pr-50ns.mdp"
-    )
+    mdp_filename = f"{input_dir}/pr-50ns.mdp"
+    # (
+    #     "/mnt/pure/bowmanlab/WG-shahlo/projects/Ab_dynamics/simulations/pr-50ns.mdp"
+    # )
     print(top_filename, mdp_filename)
     ndx_filename = None  # f"{input_dir}/index.ndx" # change if groups are other than protein / system
     # print(top_filename, mdp_filename, ndx_filename)
@@ -69,9 +69,9 @@ def entry_point():
     # CLUSTERING PARAMETERS
     cluster_radius = 0.15
     # Radius to be used for KCenters clustering
-    prot_masses = f"{input_dir}/{sim_name}-prot-masses.pdb"
+    prot_masses = [ f"{input_dir}/{sim_name}-prot-masses.pdb" for sim_name in sim_names ]
 
-    atom_indices = f"{input_dir}/atom_indices.dat"
+    atom_indices = f"{input_dir}/{sim_name}-atom_indices.dat"
     # The atom indices (with respect to prot_masses) you want to use to cluster between rounds of FAST
     # Backbone atoms are a solid default choice.
 
