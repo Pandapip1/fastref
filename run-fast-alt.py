@@ -10,7 +10,7 @@ from fast.msm_gen import ClusterWrap
 from fast.sampling import rankings, scalings
 from fast.submissions.slurm_subs import SlurmSub, SlurmWrap
 from fast import SaveWrap
-from fast.analysis.pocket_predictor import PocketWrap
+from fast.analysis.pockets import PocketWrap
 from fast.analysis.pocketminer import PocketMinerLikelihood
 
 from pypocketminer.models.mqa_model import MQAModel
