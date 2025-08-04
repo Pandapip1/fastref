@@ -9,7 +9,7 @@
 #SBATCH --job-name=equil
 
 # queue
-#SBATCH --partition=qr6
+#SBATCH --partition=a5000
 #SBATCH --gpus=1
 
 set -euxo pipefail
