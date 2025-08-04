@@ -1,0 +1,26 @@
+                     :-) GROMACS - gmx editconf, 2025.1 (-:
+
+Executable:   /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5000/bin/gmx
+Data prefix:  /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5000
+Working dir:  /mnt/pure/bowmanlab/gnjohn/fastref/inputs
+Command line:
+  gmx editconf -c -f 1JWP.gro -o 1JWP_box.gro -bt dodecahedron -d 1.0
+
+
+GROMACS reminds you: "Your theory is crazy, but it's not crazy enough to be true." (Niels Bohr)
+
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 4061 atoms
+Volume: 352.533 nm^3, corresponds to roughly 158600 electrons
+No velocities found
+    system size :  4.721  4.519  5.904 (nm)
+    diameter    :  5.963               (nm)
+    center      :  5.834  5.966  2.681 (nm)
+    box vectors :  7.929  7.929  7.929 (nm)
+    box angles  :  60.00  60.00  90.00 (degrees)
+    box volume  : 352.53               (nm^3)
+    shift       :  0.138  0.006  0.134 (nm)
+new center      :  5.972  5.972  2.815 (nm)
+new box vectors :  7.963  7.963  7.963 (nm)
+new box angles  :  60.00  60.00  90.00 (degrees)
+new box volume  : 357.06               (nm^3)
