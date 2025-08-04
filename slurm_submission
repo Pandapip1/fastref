@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# jobname
+#SBATCH --job-name=TODO_JOBNAME
+
+# queue
+#SBATCH --partition=amdcpu
+#SBATCH --ntasks=1
+
+source .venv/bin/activate
+python run-fast-alt.py

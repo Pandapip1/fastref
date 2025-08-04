@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# specify resources
+
+# max wallclock time
+#SBATCH --time=2:00:00
+
+# jobname
+#SBATCH --job-name=equil
+
+# queue
+#SBATCH --partition=qr6
+#SBATCH --gpus=1
+
+set -euxo pipefail
+source ../GMXRC
+echo $GMXBIN
+
+make

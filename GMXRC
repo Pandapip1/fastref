@@ -1,0 +1,20 @@
+CardType="$(nvidia-smi -L | head -n 1)"
+if [[ "${CardType}" =~ RTX.6000 ]]
+then
+    gpu_build=qr6
+elif [[ "${CardType}" =~ A5000 ]]
+then
+    gpu_build=a5000
+elif [[ "${CardType}" =~ Ada ]]
+then
+    gpu_build=a5000
+elif [[ "${CardType}" =~ P100 ]]
+then
+    gpu_build=p100
+else
+    echo "CardType=${CardType} is weird. Exiting now."
+    exit 1
+fi
+
+module load "gromacs/gcc/11.2.1/gromacs_2025_${gpu_build}"
+source "/opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_${gpu_build}/bin/GMXRC"
