@@ -240,7 +240,7 @@ def entry_point():
             continue_prev=True,
             update_freq=update_freq,
             sub_obj=submission_obj,
-            output_dir=f"{output_dir}/ligsite/${sim_name}",
+            output_dir=f"{output_dir}/ligsite/{sim_name}",
             q_check_obj=SlurmWrap(),
             q_check_obj_sim=SlurmWrap(),
         ).run()
@@ -256,7 +256,7 @@ def entry_point():
             continue_prev=True,
             update_freq=update_freq,
             sub_obj=submission_obj,
-            output_dir=f"{output_dir}/pocketminer/${sim_name}",
+            output_dir=f"{output_dir}/pocketminer/{sim_name}",
             q_check_obj=SlurmWrap(),
             q_check_obj_sim=SlurmWrap(),
         ).run()
