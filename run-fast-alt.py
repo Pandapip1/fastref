@@ -16,6 +16,8 @@ from fast.analysis.pocketminer import PocketMinerLikelihood
 
 from pypocketminer.models.mqa_model import MQAModel
 
+continue_prev = False
+
 def entry_point():
 
     ###########################################
@@ -229,8 +231,8 @@ def entry_point():
         ##############################################
         #                run sampling                #
         ##############################################
-        os.makedirs(f"{output_dir}/ligsite/{sim_name}", exist_ok=True)
-        os.makedirs(f"{output_dir}/pocketminer/{sim_name}", exist_ok=True)
+        # os.makedirs(f"{output_dir}/ligsite/{sim_name}", exist_ok=True)
+        # os.makedirs(f"{output_dir}/pocketminer/{sim_name}", exist_ok=True)
         AdaptiveSampling(
             starting_structure,
             n_gens=n_gens,
@@ -240,7 +242,7 @@ def entry_point():
             save_state_obj=save_state_obj,
             analysis_obj=analysis_ligsite,
             ranking_obj=ranking_obj,
-            continue_prev=True,
+            continue_prev=continue_prev,
             update_freq=update_freq,
             sub_obj=submission_obj,
             output_dir=f"{output_dir}/ligsite/{sim_name}",
@@ -256,7 +258,7 @@ def entry_point():
             save_state_obj=save_state_obj,
             analysis_obj=analysis_pm,
             ranking_obj=ranking_obj,
-            continue_prev=True,
+            continue_prev=continue_prev,
             update_freq=update_freq,
             sub_obj=submission_obj,
             output_dir=f"{output_dir}/pocketminer/{sim_name}",
