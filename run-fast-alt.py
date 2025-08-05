@@ -124,6 +124,7 @@ def entry_point():
 
         # ANALYSIS PARAMETERS (ligsite)
         min_rank = 6
+        n_cpus_analysis = 24
         # Minimum rank for defining a pocket element. Ranges from 1-7, 1
         # being very shallow and 7 being a fully enclosed pocket element.
 
@@ -206,7 +207,7 @@ def entry_point():
         analysis_ligsite = PocketWrap(
             min_rank=min_rank,
             min_cluster_size=min_cluster_size,
-            n_cpus=n_cpus,
+            n_cpus=n_cpus_analysis,
             probe_radius=probe_radius,
         )
         analysis_pm = PocketMinerLikelihood(
