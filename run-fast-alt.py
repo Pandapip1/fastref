@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import glob
 import mdtraj as md
 import numpy as np
@@ -228,6 +229,8 @@ def entry_point():
         ##############################################
         #                run sampling                #
         ##############################################
+        os.makedirs(os.path.dirname(f"{output_dir}/ligsite/{sim_name}"), exist_ok=True)
+        os.makedirs(os.path.dirname(f"{output_dir}/pocketminer/{sim_name}"), exist_ok=True)
         AdaptiveSampling(
             starting_structure,
             n_gens=n_gens,
