@@ -104,7 +104,7 @@ def entry_point():
         directed_scaling = scalings.feature_scale(maximize=True)
         # here we're trying to maximize the contacts
 
-        distance_metric_rmsd = md.rmsd
+        distance_metric = md.rmsd
         # This will ultimately be used to discourage FAST from choosing geometrically similar
         # states when choosing states for further simulation.
         width = 0.36
