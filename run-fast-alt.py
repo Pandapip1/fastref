@@ -148,8 +148,6 @@ def entry_point():
         model_path = f"{input_dir}/pocketminer_pretrained/pocketminer.index"
 
         output_dir = f"FAST_OUT"
-        nn_path = (nn_path,)
-        model = (model,)
         # Name of directory to write to store FAST output
 
         ############################################
