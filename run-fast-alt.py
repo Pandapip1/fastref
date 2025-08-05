@@ -231,8 +231,8 @@ def entry_point():
         ##############################################
         #                run sampling                #
         ##############################################
-        # os.makedirs(f"{output_dir}/ligsite/{sim_name}", exist_ok=True)
-        # os.makedirs(f"{output_dir}/pocketminer/{sim_name}", exist_ok=True)
+        os.makedirs(f"{output_dir}/ligsite", exist_ok=True)
+        os.makedirs(f"{output_dir}/pocketminer", exist_ok=True)
         AdaptiveSampling(
             starting_structure,
             n_gens=n_gens,
