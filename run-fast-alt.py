@@ -44,7 +44,7 @@ def entry_point():
     n_cpus_gromacs = 12
     n_gpus_gromacs = 1
 
-    sim_names = ["1NEP" "1EXM" "1JWP"]
+    sim_names = ["1NEP", "1EXM", "1JWP"]
 
     gromacs_gmxrc_path = "./GMXRC"
 
