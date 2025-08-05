@@ -111,6 +111,8 @@ def entry_point():
         # This is the gaussian spread that is used to distinguish between states.
 
         # ADAPTIVE SAMPLING PARAMETERS
+        starting_structure = f"{input_dir}/{sim_name}-start.gro"
+
         n_gens = 5
         # Number of rounds or "generations" of FAST to run
         n_kids = 10
