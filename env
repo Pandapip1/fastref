@@ -15,8 +15,7 @@ then
     gpu_build=a5a
 else
     echo "CardType=${CardType} is weird. Using CPU."
-    gpu_build=amdcpu
 fi
 
-module load "gromacs/gcc/11.2.1/gromacs_2025_${gpu_build}"
-source "/opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_${gpu_build}/bin/GMXRC"
+module load "gromacs/gcc/11.2.1/gromacs_2025_${gpu_build:-amdcpu}"
+source "/opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_${gpu_build:-cpu}/bin/GMXRC"
