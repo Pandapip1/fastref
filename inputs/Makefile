@@ -67,19 +67,19 @@ $(tag)-start.gro : $(tag)_npt.gro
 	echo '1 1 0' | gmx trjconv -f $(tag)_npt.gro -o $(tag)-start.gro -s $(tag)_npt.tpr -pbc $(pbc) -center
 
 $(tag)_npt.gro : $(tag)_npt.tpr
-	bash -c "gmx mdrun -v -deffnm $(tag)_npt 2>&1 | tee npt_equilibration.log"
+	bash -c "gmx mdrun -v -deffnm $(tag)_npt 2>&1 | tee $(tag)_npt_equilibration.log"
 
 $(tag)_npt.tpr : $(tag)_nvt.gro npt-charmm.mdp
 	gmx grompp -f npt-charmm.mdp -c $(tag)_nvt.gro -p $(tag).top -t $(tag)_nvt.cpt -o $(tag)_npt.tpr -maxwarn 1 -r $(tag)_nvt.gro
 
 $(tag)_nvt.gro : $(tag)_nvt.tpr
-	bash -c "gmx mdrun -v -deffnm $(tag)_nvt 2>&1 | tee nvt_equilibration.log"
+	bash -c "gmx mdrun -v -deffnm $(tag)_nvt 2>&1 | tee $(tag)_nvt_equilibration.log"
 
 $(tag)_nvt.tpr : $(tag)_min.gro nvt-charmm.mdp
 	gmx grompp -f nvt-charmm.mdp -c $(tag)_min.gro -p $(tag).top -o $(tag)_nvt.tpr -maxwarn 1 -r $(tag)_min.gro
 
 $(tag)_min.gro : $(tag)_min.tpr
-	bash -c "gmx mdrun -v -deffnm $(tag)_min 2>&1 | tee minimization.log" && grep "Steepest Descents converged to Fmax" minimization.log
+	bash -c "gmx mdrun -v -deffnm $(tag)_min 2>&1 | tee $(tag)_minimization.log" && grep "Steepest Descents converged to Fmax" $(tag)_minimization.log
 
 $(tag)_min.tpr : $(tag)_ions.gro minim.mdp
 	gmx grompp -f minim.mdp -c $(tag)_ions.gro -p $(tag).top -o $(tag)_min.tpr
@@ -98,13 +98,13 @@ $(tag)_solv.gro : $(tag)_box.gro
 	gmx solvate -cp $(tag)_box.gro -cs -o $(tag)_solv.gro -p $(tag).top
 
 $(tag)_box.gro : $(tag).gro
-	bash -c "gmx editconf -c -f $(tag).gro -o $(tag)_box.gro -bt $(box_geometry) -d $(box_edge_distance) 2>&1" > editconf.log
+	bash -c "gmx editconf -c -f $(tag).gro -o $(tag)_box.gro -bt $(box_geometry) -d $(box_edge_distance) 2>&1" > $(tag)_editconf.log
 
 $(tag).gro $(tag).top : $(tag)-noH.pdb
 ifdef vsite_atoms
-	bash -c "gmx pdb2gmx -f $(tag)-noH.pdb -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -vsite $(vsite_atoms) -water $(water) 2>&1" > prot.info || cat prot.info
+	bash -c "gmx pdb2gmx -f $(tag)-noH.pdb -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -vsite $(vsite_atoms) -water $(water) 2>&1" > $(tag)_prot.info || cat $(tag)_prot.info
 else
-	bash -c "gmx pdb2gmx -f $(tag)-noH.pdb -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -water $(water) 2>&1" > prot.info || cat prot.info
+	bash -c "gmx pdb2gmx -f $(tag)-noH.pdb -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -water $(water) 2>&1" > $(tag)_prot.info || cat $(tag)_prot.info
 endif
 
 # Equilibration will occur at 2 fs timestep
