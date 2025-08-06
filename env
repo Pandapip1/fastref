@@ -1,3 +1,5 @@
+source /mnt/pure/bowmanlab/gnjohn/fastref/.venv/bin/activate
+
 CardType="$(nvidia-smi -L | head -n 1)"
 if [[ "${CardType}" =~ RTX.6000 ]]
 then

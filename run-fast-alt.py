@@ -49,7 +49,7 @@ def entry_point():
 
     sim_names = ["1NEP", "1EXM", "1JWP"]
 
-    gromacs_gmxrc_path = "./GMXRC"
+    env_setup_path = "./env"
 
     submission_obj = SlurmSub("amdcpu", n_cpus=24)
 
@@ -187,7 +187,7 @@ def entry_point():
             processing_obj=gro_processing,
             submission_obj=gro_submission,
             pin="on",
-            setup_path=gromacs_gmxrc_path,
+            setup_path=env_setup_path,
             itp_files=itp_files,
         )
 

@@ -19,7 +19,7 @@ TAGS=("1EXM" "1NEP" "1JWP")
 export tag="${TAGS[$SLURM_ARRAY_TASK_ID]}"
 
 set -euxo pipefail
-source ../GMXRC
-echo $GMXBIN
+
+source ../env
 
 make
