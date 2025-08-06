@@ -26,25 +26,19 @@ def entry_point():
 
     # SIMULATION PARAMETERS
 
-    input_dir = "./inputs"  # CHANGE IF NEEDED
+    input_dir = "./inputs"
     # input_dir should be a path to a directory that contains
     # a topol.top file from equilibration
     # an mdp file that contains the simulation parameters
     # a pdb file of the protein with hydrogens (i.e. equilibrated starting structure - no solvent)
     # a start.gro file of the equilibrated system
 
-    q_name = "a5000"  # qr6 or a5000 # CHANGE IF NEEDED
+    q_name = "a5a,a5000"
     constraint = "nvidiagpu"
     # q_name -- The name of the queue you are going to submit to
     # currently we have support for LSF and SLURM queues, as well as submitting on a laptop/desktop.
 
-    # gpu_info = '"num=1:gmodel=QuadroRTX6000"'
-    # Name of the GPU, which is needed on our queuing system to select a GPU specific node
-    # This is important for the code to be able to generate the appropriate header for
-    # submitting to your queing system
-    # For example, this will end up writing out #BSUB -gpu "num=1:gmodel=TeslaP100_PCIE_16GB"
-
-    n_cpus_gromacs = 12
+    n_cpus_gromacs = 24
     n_gpus_gromacs = 1
 
     sim_names = ["1NEP", "1EXM", "1JWP"]

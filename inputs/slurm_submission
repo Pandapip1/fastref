@@ -9,8 +9,7 @@
 #SBATCH --job-name=equil
 
 # queue
-#SBATCH --partition=a5000
-#SBATCH --gpus=1
+#SBATCH --partition=amdcpu
 
 # array
 #SBATCH --array=0-2
