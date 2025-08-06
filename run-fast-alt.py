@@ -174,7 +174,6 @@ if __name__ == "__main__":
                     setup_path=env_setup_path,
                     submission_obj=SlurmSub(
                         gpu_queue,
-                        constraint=gpu_constraint,
                         n_tasks=n_cpus,
                         gpus=n_gpus,
                     ),
