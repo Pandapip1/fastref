@@ -1,20 +1,24 @@
 source /mnt/pure/bowmanlab/gnjohn/fastref/.venv/bin/activate
 
-CardType="$((nvidia-smi -L | head -n 1) || echo "amdcpu")"
-if [[ "${CardType}" =~ Tesla.P100 ]]
-then
-    gpu_build=p100
-elif [[ "${CardType}" =~ Quadro.RTX.6000 ]]
-then
-    gpu_build=qr6
-elif [[ "${CardType}" =~ NVIDIA.RTX.A5000 ]]
-then
-    gpu_build=a5000
-elif [[ "${CardType}" =~ NVIDIA.RTX.5000.Ada ]]
-then
-    gpu_build=a5a
+if command -v nvidia-smi &> /dev/null; then
+    CardType="$(nvidia-smi -L | head -n 1)"
+    if [[ "${CardType}" =~ Tesla.P100 ]]
+    then
+        gpu_build=p100
+    elif [[ "${CardType}" =~ Quadro.RTX.6000 ]]
+    then
+        gpu_build=qr6
+    elif [[ "${CardType}" =~ NVIDIA.RTX.A5000 ]]
+    then
+        gpu_build=a5000
+    elif [[ "${CardType}" =~ NVIDIA.RTX.5000.Ada ]]
+    then
+        gpu_build=a5a
+    else
+        echo "CardType=${CardType} is weird. Using CPU."
+    fi
 else
-    echo "CardType=${CardType} is weird. Using CPU."
+    echo "nvidia-smi not found. Using CPU."
 fi
 
 module load "gromacs/gcc/11.2.1/gromacs_2025_${gpu_build:-amdcpu}"
