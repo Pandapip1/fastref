@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+#### Resources (pre-import)
+
+n_cpus_preimport = 24
+
+# Imports
+os.environ["NUMEXPR_MAX_THREADS"] = n_cpus_preimport
 import os
 import mdtraj as md
 from enspara.cluster import KHybrid
@@ -34,7 +40,7 @@ normal_queue = "amdcpu"
 gpu_queue = "a5a,a5000"
 
 # The number of threads to request for parallelizable tasks
-n_cpus = 24
+n_cpus = n_cpus_preimport
 
 # The number of GPUs to request for GPU-able tasks
 n_gpus = 1
