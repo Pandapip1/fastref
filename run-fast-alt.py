@@ -188,7 +188,7 @@ if __name__ == "__main__":
                     # Backbone atoms are a solid default choice.
                     # Generated from equilibration
                     # See inputs/README.md; inputs/save_inds.py
-                    atom_indices=f"{input_dir}/{sim_name}-atom_indices.dat",
+                    atom_indices=f"{input_dir}/{sim_name}_atom_indices.dat",
                     n_procs=n_cpus,
                 ),
                 save_state_obj=save_state_obj,
