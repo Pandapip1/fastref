@@ -8,4 +8,4 @@ if __name__ == "__main__":
 	atom_inds = pdb.topology.select(f"protein and name N CA CB C O")
 	with open(sys.argv[2], "w") as f:
 		for i in atom_inds:
-			f.write(f"${i}\n")
+			f.write(f"{i}\n")
