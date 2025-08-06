@@ -6,6 +6,6 @@ import sys
 if __name__ == "__main__":
 	pdb = md.load(sys.argv[1])
 	atom_inds = pdb.topology.select(f"protein and name N CA CB C O")
-	with open("demofile.txt", "w") as f:
+	with open(sys.argv[2], "w") as f:
 		for i in atom_inds:
 			f.write(f"${i}\n")
