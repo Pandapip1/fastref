@@ -9,7 +9,7 @@ from fast.msm_gen import ClusterWrap
 from fast.sampling import rankings, scalings
 from fast.submissions.slurm_subs import SlurmSub, SlurmWrap
 from fast.analysis.pockets import PocketWrap
-from fast.analysis.pocketminer import PocketMinerLikelihood
+from fast.analysis.pocketminer import PMExpectedVolumeWrap
 from pypocketminer.models.mqa_model import MQAModel
 
 #### General
@@ -129,7 +129,7 @@ analyses = {
             # This is the gaussian spread that is used to distinguish between states.
             width=0.36,
         ),
-        "analysis": PocketMinerLikelihood(
+        "analysis": PMExpectedVolumeWrap(
             # Path to pretrained PocketMiner checkpoint
             nn_path=f"{input_dir}/pocketminer_pretrained/pocketminer.index",
             # The model corresponding to the checkpoint
