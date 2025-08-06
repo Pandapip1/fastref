@@ -41,7 +41,7 @@ def entry_point():
     n_cpus_gromacs = 24
     n_gpus_gromacs = 1
 
-    sim_names = ["1NEP", "1EXM", "1JWP"]
+    sim_names = ["1EXM", "1JWP", "1NEP"]
 
     env_setup_path = "./env"
 
