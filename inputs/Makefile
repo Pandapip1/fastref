@@ -1,19 +1,21 @@
-nm = TODO_FILLIN_MAKEFILE
-tag = $(nm)-nohydrogen
-pdb = $(tag).pdb
+ifndef tag
+	$(error tag is not set)
+endif
 
-ff = amber03
-water = tip3p
-box_geometry = dodecahedron
-box_edge_distance = 1.0 # usually 1.0 # changed
+pdb ?= $(tag).pdb
+
+ff ?= amber03
+water ?= tip3p
+box_geometry ?= dodecahedron
+box_edge_distance ?= 1.0 # usually 1.0
 
 # use the following pbc approach
-pbc = cluster
+pbc ?= cluster
 
 #sets solvent NaCl concentration in M otherwise ionize to neutral charge
-molar_nacl = 0.1
-pname = NA
-nname = CL
+molar_nacl ?= 0.1
+pname ?= NA
+nname ?= CL
 
 # hacky solution to get sed to delete final line
 d = d
@@ -41,6 +43,9 @@ minimized : $(tag)_min.gro
 .PHONY : solvated
 solvated : $(tag)_solv.gro
 
+.PHONY : atom_inds
+atom_inds : $(tag)_atom_indices.dat
+
 .PHONY : clean
 clean :
 	find . ! -name "*.pdb" ! -name "Makefile" ! -name "em.mdp" ! -name "pr.mdp" ! -name "README*" ! -name "*.zip" -delete
@@ -52,12 +57,14 @@ clean :
 # $(tag).tar.gz : $(tag)-start.gro $(tag).top
 # 	tar -cvzf $(tag).tar.gz $(tag)-start.gro $(tag).top $(tag)*itp README.txt
 
+$(tag)-noH.pdb : $(pdb)
+	./strip_h.py $(pdb) $(tag)-noH.pdb
+
 $(tag)-prot-masses.pdb : $(tag)-start.gro
-	        echo '1 10' | gmx trjconv -f $(tag)_npt.gro -o $(tag)-prot-masses.pdb -s $(tag)_npt.tpr -pbc $(pbc)
+	echo '1 10' | gmx trjconv -f $(tag)_npt.gro -o $(tag)-prot-masses.pdb -s $(tag)_npt.tpr -pbc $(pbc)
 
 $(tag)-start.gro : $(tag)_npt.gro
-	        echo '1 1 0' | gmx trjconv -f $(tag)_npt.gro -o $(tag)-start.gro -s $(tag)_npt.tpr -pbc $(pbc) -center
-
+	echo '1 1 0' | gmx trjconv -f $(tag)_npt.gro -o $(tag)-start.gro -s $(tag)_npt.tpr -pbc $(pbc) -center
 
 $(tag)_npt.gro : $(tag)_npt.tpr
 	bash -c "gmx mdrun -v -deffnm $(tag)_npt 2>&1 | tee npt_equilibration.log"
@@ -93,11 +100,14 @@ $(tag)_solv.gro : $(tag)_box.gro
 $(tag)_box.gro : $(tag).gro
 	bash -c "gmx editconf -c -f $(tag).gro -o $(tag)_box.gro -bt $(box_geometry) -d $(box_edge_distance) 2>&1" > editconf.log
 
-$(tag).gro $(tag).top : $( pdb )
+$(tag).gro $(tag).top : $(tag)-noH.pdb
 ifdef vsite_atoms
-	bash -c "gmx pdb2gmx -f  $(pdb) -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -vsite $(vsite_atoms) -water $(water) 2>&1" > prot.info || cat prot.info
+	bash -c "gmx pdb2gmx -f $(tag)-noH.pdb -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -vsite $(vsite_atoms) -water $(water) 2>&1" > prot.info || cat prot.info
 else
-	bash -c "gmx pdb2gmx -f  $(pdb) -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -water $(water) 2>&1" > prot.info || cat prot.info
+	bash -c "gmx pdb2gmx -f $(tag)-noH.pdb -o $(tag).gro -p $(tag).top -ff $(ff) -ignh -water $(water) 2>&1" > prot.info || cat prot.info
 endif
 
 # Equilibration will occur at 2 fs timestep
+
+$(tag)_atom_indices.dat : $(tag)-prot-masses.pdb
+	./save_inds.py $(tag)-prot-masses.pdb $(tag)_atom_indices.dat
