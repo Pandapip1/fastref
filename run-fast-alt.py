@@ -155,7 +155,7 @@ if __name__ == "__main__":
             AdaptiveSampling(
                 # Generated from equilibration
                 # See inputs/README.md
-                starting_structure=f"{input_dir}/{sim_name}-start.gro",
+                f"{input_dir}/{sim_name}-start.gro",
                 n_gens=n_gens,
                 n_kids=n_kids,
                 sim_obj=Gromacs(
