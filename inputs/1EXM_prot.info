@@ -1,0 +1,165 @@
+                     :-) GROMACS - gmx pdb2gmx, 2025.1 (-:
+
+Executable:   /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/bin/gmx
+Data prefix:  /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a
+Working dir:  /mnt/pure/bowmanlab/gnjohn/fastref/inputs
+Command line:
+  gmx pdb2gmx -f 1EXM-noH.pdb -o 1EXM.gro -p 1EXM.top -ff amber03 -ignh -water tip3p -i 1EXM_posre.itp
+
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.r2b
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.r2b
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.r2b
+All occupancies are one
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/atomtypes.atp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.rtp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.rtp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.rtp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.hdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.hdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.hdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.n.tdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.c.tdb
+Analysing hydrogen-bonding network for automated assignment of histidine
+ protonation. 596 donors and 594 acceptors were found.
+There are 912 hydrogen bonds
+Will use HISE for residue 11
+Will use HISE for residue 19
+Will use HISE for residue 22
+Will use HISE for residue 67
+Will use HISE for residue 76
+Will use HISE for residue 79
+Will use HISE for residue 85
+Will use HISE for residue 119
+Will use HISH for residue 183
+Will use HISE for residue 273
+Will use HISE for residue 313
+Will use HISE for residue 331
+9 out of 9 lines of specbond.dat converted successfully
+Special Atom Distance matrix:
+                   HIS11   HIS19   HIS22   HIS67   HIS76   HIS79   CYS82
+                   NE273  NE2128  NE2153  NE2490  NE2569  NE2597   SG619
+   HIS19  NE2128   2.944
+   HIS22  NE2153   2.821   0.460
+   HIS67  NE2490   0.969   2.384   2.376
+   HIS76  NE2569   0.725   3.128   2.951   1.211
+   HIS79  NE2597   1.277   1.834   1.650   1.026   1.304
+   CYS82   SG619   1.510   1.528   1.549   0.898   1.815   0.815
+   HIS85  NE2639   3.004   0.830   1.207   2.225   3.170   1.992   1.515
+   MET92   SD697   1.937   1.304   1.433   1.396   2.342   1.311   0.578
+   MET99   SD743   1.208   1.800   1.721   1.013   1.623   0.770   0.554
+  MET113   SD833   3.243   0.509   0.581   2.786   3.452   2.155   1.905
+  HIS119  NE2886   2.179   0.918   1.068   1.609   2.496   1.322   0.722
+  MET135  SD1013   2.881   1.532   1.094   2.792   2.949   1.837   2.099
+  MET140  SD1053   3.407   1.593   1.247   3.060   3.278   2.155   2.448
+  MET152  SD1148   3.555   2.104   1.851   3.561   3.820   2.771   2.789
+  MET182  SD1386   2.413   2.794   2.435   2.457   1.938   1.648   2.426
+  HIS183 NE21396   2.560   2.565   2.321   2.251   2.088   1.648   2.250
+  MET223  SD1738   1.179   3.180   3.225   0.958   1.608   1.926   1.677
+  MET272  SD2101   0.483   3.169   3.070   0.933   0.608   1.469   1.699
+  HIS273 NE22111   0.670   2.790   2.672   0.718   0.507   1.050   1.405
+  HIS313 NE22410   2.755   3.851   4.028   2.642   3.422   3.357   2.766
+  HIS331 NE22556   3.879   1.669   2.047   3.308   4.294   3.135   2.497
+  MET361  SD2796   4.524   3.107   3.452   4.065   5.095   4.164   3.427
+  MET363  SD2811   4.321   2.805   3.116   3.909   4.882   3.903   3.211
+                   HIS85   MET92   MET99  MET113  HIS119  MET135  MET140
+                  NE2639   SD697   SD743   SD833  NE2886  SD1013  SD1053
+   MET92   SD697   1.352
+   MET99   SD743   1.980   0.820
+  MET113   SD833   1.289   1.619   2.071
+  HIS119  NE2886   1.051   0.390   1.021   1.267
+  MET135  SD1013   2.289   2.089   1.984   1.368   1.845
+  MET140  SD1053   2.089   2.548   2.583   1.605   2.207   1.252
+  MET152  SD1148   2.917   2.545   2.582   1.708   2.373   1.263   2.342
+  MET182  SD1386   3.071   2.871   2.366   2.999   2.747   2.114   1.963
+  HIS183 NE21396   2.601   2.718   2.408   2.888   2.559   2.428   1.893
+  MET223  SD1738   2.955   1.991   1.675   3.561   2.309   3.627   4.004
+  MET272  SD2101   3.121   2.180   1.535   3.517   2.412   3.211   3.592
+  HIS273 NE22111   2.747   1.948   1.323   3.154   2.113   2.847   3.121
+  HIS313 NE22410   3.675   2.614   2.700   4.090   2.988   4.492   5.143
+  HIS331 NE22556   1.740   1.961   2.722   1.605   1.823   2.856   3.169
+  MET361  SD2796   3.084   2.865   3.550   3.059   2.922   4.123   4.648
+  MET363  SD2811   2.899   2.636   3.295   2.702   2.668   3.717   4.302
+                  MET152  MET182  HIS183  MET223  MET272  HIS273  HIS313
+                  SD1148  SD1386 NE21396  SD1738  SD2101 NE22111 NE22410
+  MET182  SD1386   3.309
+  HIS183 NE21396   3.674   0.953
+  MET223  SD1738   4.229   3.295   3.132
+  MET272  SD2101   3.970   2.479   2.508   1.025
+  HIS273 NE22111   3.713   2.056   2.017   1.268   0.510
+  HIS313 NE22410   4.556   4.952   4.861   2.018   2.870   3.120
+  HIS331 NE22556   2.684   4.400   4.171   3.768   4.133   3.898   3.539
+  MET361  SD2796   3.680   5.635   5.458   4.185   4.785   4.701   3.145
+  MET363  SD2811   3.211   5.323   5.203   4.106   4.616   4.511   3.205
+                  HIS331  MET361
+                 NE22556  SD2796
+  MET361  SD2796   1.553
+  MET363  SD2811   1.295   0.486
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.arn
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.arn
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.arn
+Before cleaning: 16610 pairs
+Before cleaning: 16795 dihedrals
+
+GROMACS reminds you: "It seemed a good idea at first" (Gerrit Groenhof)
+
+Using the Amber03 force field in directory amber03.ff
+
+going to rename amber03.ff/aminoacids.r2b
+
+going to rename amber03.ff/dna.r2b
+
+going to rename amber03.ff/rna.r2b
+Reading 1EXM-noH.pdb...
+Read '', 3128 atoms
+
+Analyzing pdb file
+Splitting chemical chains based on TER records or chain id changing.
+
+There are 1 chains and 0 blocks of water and 403 residues with 3128 atoms
+
+  chain  #res #atoms
+
+  1 'A'   403   3128  
+
+All occupancies are one
+
+Reading residue database... (Amber03)
+
+Processing chain 1 'A' (3128 atoms, 403 residues)
+
+Identified residue GLY3 as a starting terminus.
+
+Identified residue GLU405 as a ending terminus.
+
+Checking for duplicate atoms....
+
+Generating any missing hydrogen atoms and/or adding termini.
+
+Now there are 403 residues with 6265 atoms
+
+Making bonds...
+
+Number of bonds was 6327, now 6326
+
+Generating angles, dihedrals and pairs...
+
+Making cmap torsions...
+
+There are 16795 dihedrals, 1211 impropers, 11487 angles
+          16535 pairs,     6326 bonds and     0 virtual sites
+
+Total mass 44438.027 a.m.u.
+
+Total charge -14.000 e
+
+Writing topology
+
+Writing coordinate file...
+
+		--------- PLEASE NOTE ------------
+
+You have successfully generated a topology from: 1EXM-noH.pdb.
+
+The Amber03 force field and the tip3p water model are used.
+
+		--------- ETON ESAELP ------------

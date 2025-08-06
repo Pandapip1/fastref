@@ -1,0 +1,26 @@
+                     :-) GROMACS - gmx editconf, 2025.1 (-:
+
+Executable:   /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/bin/gmx
+Data prefix:  /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a
+Working dir:  /mnt/pure/bowmanlab/gnjohn/fastref/inputs
+Command line:
+  gmx editconf -c -f 1NEP.gro -o 1NEP_box.gro -bt dodecahedron -d 1.0
+
+
+GROMACS reminds you: "It seemed a good idea at first" (Gerrit Groenhof)
+
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 2043 atoms
+Volume: 218.902 nm^3, corresponds to roughly 98500 electrons
+No velocities found
+    system size :  3.102  4.564  3.659 (nm)
+    diameter    :  4.727               (nm)
+    center      :  4.897  5.179  2.250 (nm)
+    box vectors :  6.765  6.765  6.765 (nm)
+    box angles  :  60.00  60.00  90.00 (degrees)
+    box volume  : 218.90               (nm^3)
+    shift       :  0.149 -0.134  0.129 (nm)
+new center      :  5.046  5.046  2.379 (nm)
+new box vectors :  6.727  6.727  6.727 (nm)
+new box angles  :  60.00  60.00  90.00 (degrees)
+new box volume  : 215.30               (nm^3)

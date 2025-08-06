@@ -1,0 +1,113 @@
+                     :-) GROMACS - gmx pdb2gmx, 2025.1 (-:
+
+Executable:   /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/bin/gmx
+Data prefix:  /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a
+Working dir:  /mnt/pure/bowmanlab/gnjohn/fastref/inputs
+Command line:
+  gmx pdb2gmx -f 1NEP-noH.pdb -o 1NEP.gro -p 1NEP.top -ff amber03 -ignh -water tip3p -i 1NEP_posre.itp
+
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.r2b
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.r2b
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.r2b
+All occupancies are one
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/atomtypes.atp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.rtp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.rtp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.rtp
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.hdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.hdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.hdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.n.tdb
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.c.tdb
+Analysing hydrogen-bonding network for automated assignment of histidine
+ protonation. 192 donors and 192 acceptors were found.
+There are 320 hydrogen bonds
+Will use HISE for residue 31
+Will use HISE for residue 56
+9 out of 9 lines of specbond.dat converted successfully
+Special Atom Distance matrix:
+                    CYS8   CYS23   CYS28   HIS31   HIS56   MET60   CYS74
+                    SG64   SG173   SG209  NE2235  NE2425   SD452   SG552
+   CYS23   SG173   1.648
+   CYS28   SG209   1.511   0.204
+   HIS31  NE2235   2.723   1.452   1.422
+   HIS56  NE2425   1.085   2.071   1.876   2.598
+   MET60   SD452   2.010   2.101   1.942   2.045   1.772
+   CYS74   SG552   1.995   2.656   2.559   3.479   1.902   3.542
+   CYS80   SG596   2.002   2.652   2.567   3.542   2.015   3.629   0.203
+  CYS121   SG948   0.204   1.792   1.655   2.856   1.040   2.150   1.842
+                   CYS80
+                   SG596
+  CYS121   SG948   1.851
+Linking CYS-8 SG-64 and CYS-121 SG-948...
+Linking CYS-23 SG-173 and CYS-28 SG-209...
+Linking CYS-74 SG-552 and CYS-80 SG-596...
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/aminoacids.arn
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/dna.arn
+Opening force field file /opt/user/gromacs/gcc/11.2.1/gromacs_2025.1_a5a/share/gromacs/top/amber03.ff/rna.arn
+Before cleaning: 5509 pairs
+Before cleaning: 5594 dihedrals
+
+GROMACS reminds you: "It seemed a good idea at first" (Gerrit Groenhof)
+
+Using the Amber03 force field in directory amber03.ff
+
+going to rename amber03.ff/aminoacids.r2b
+
+going to rename amber03.ff/dna.r2b
+
+going to rename amber03.ff/rna.r2b
+Reading 1NEP-noH.pdb...
+Read '', 1027 atoms
+
+Analyzing pdb file
+Splitting chemical chains based on TER records or chain id changing.
+
+There are 1 chains and 0 blocks of water and 130 residues with 1027 atoms
+
+  chain  #res #atoms
+
+  1 'A'   130   1027  
+
+All occupancies are one
+
+Reading residue database... (Amber03)
+
+Processing chain 1 'A' (1027 atoms, 130 residues)
+
+Identified residue GLU1 as a starting terminus.
+
+Identified residue ALA130 as a ending terminus.
+
+Checking for duplicate atoms....
+
+Generating any missing hydrogen atoms and/or adding termini.
+
+Now there are 130 residues with 2043 atoms
+
+Making bonds...
+
+Number of bonds was 2075, now 2074
+
+Generating angles, dihedrals and pairs...
+
+Making cmap torsions...
+
+There are 5594 dihedrals,  394 impropers, 3780 angles
+          5473 pairs,     2074 bonds and     0 virtual sites
+
+Total mass 14610.818 a.m.u.
+
+Total charge 1.000 e
+
+Writing topology
+
+Writing coordinate file...
+
+		--------- PLEASE NOTE ------------
+
+You have successfully generated a topology from: 1NEP-noH.pdb.
+
+The Amber03 force field and the tip3p water model are used.
+
+		--------- ETON ESAELP ------------
