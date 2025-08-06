@@ -9,7 +9,9 @@
 #SBATCH --job-name=equil
 
 # queue
-#SBATCH --partition=amdcpu
+# While the Makefile doesn't set it explicitly, gromacs mdrun is gpu accelerated by default
+#SBATCH --partition=a5a
+#SBATCH --gpus=1
 
 # array
 #SBATCH --array=0-2
