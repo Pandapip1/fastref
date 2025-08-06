@@ -172,6 +172,7 @@ if __name__ == "__main__":
                     n_cpus=n_cpus,
                     n_gpus=n_gpus,
                     setup_path=env_setup_path,
+                    processing_obj=processing_obj,
                     submission_obj=SlurmSub(
                         gpu_queue,
                         n_tasks=n_cpus,
