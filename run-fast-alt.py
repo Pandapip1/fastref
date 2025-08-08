@@ -152,11 +152,12 @@ analyses = {
 
 
 if __name__ == "__main__":
-    task_id = os.environ["SLURM_ARRAY_TASK_ID"]
+    task_id = int(os.environ["SLURM_ARRAY_TASK_ID"])
     sim_name = sim_names[task_id % len(sim_names)]
     anl_names = list(analyses.keys()).sort()
     anl_name = anl_names[task_id // len(sim_names)]
     analysis_objs = analyses[anl_name]
+    print(f"I am task ID {task_id} runing simulation name {sim_name} and analysis name {anl_name}")
 
     os.makedirs(f"{output_dir}/{name}", exist_ok=True)
     continue_prev = False
