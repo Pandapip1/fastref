@@ -5,8 +5,8 @@
 n_cpus_preimport = 16
 
 # Imports
-os.environ["NUMEXPR_MAX_THREADS"] = n_cpus_preimport
 import os
+os.environ["NUMEXPR_MAX_THREADS"] = n_cpus_preimport
 import mdtraj as md
 from enspara.cluster import KHybrid
 from fast import AdaptiveSampling, SaveWrap
