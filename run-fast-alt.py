@@ -159,7 +159,7 @@ if __name__ == "__main__":
     analysis_objs = analyses[anl_name]
     print(f"I am task ID {task_id} runing simulation name {sim_name} and analysis name {anl_name}")
 
-    os.makedirs(f"{output_dir}/{name}", exist_ok=True)
+    os.makedirs(f"{output_dir}/{anl_name}", exist_ok=True)
     continue_prev = False
     for i in range(n_kids):
         continue_prev = os.path.exists(f"{output_dir}/{anl_name}/{sim_name}/gen0/kid{i}/frame0.xtc")
