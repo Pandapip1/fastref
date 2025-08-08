@@ -20,10 +20,6 @@ from pypocketminer.models.mqa_model import MQAModel
 
 #### General
 
-# Flag to continue from previous run
-# TODO: This should be smarter
-continue_prev = False
-
 # See inputs/README.md
 input_dir = "./inputs"
 
@@ -41,6 +37,7 @@ gpu_queue = "a5a,a5000"
 
 # The number of threads to request for parallelizable tasks
 n_cpus = n_cpus_preimport
+n_cpus_cpuheavy = 64
 
 # The number of GPUs to request for GPU-able tasks
 n_gpus = 1
@@ -123,7 +120,7 @@ analyses = {
             # The minimum number of adjacent pocket elements to consider a
             # true pocket. Trims pockets smaller than this size.
             min_cluster_size=3,
-            n_cpus=n_cpus,
+            n_cpus=n_cpus_cpuheavy,
         ),
     },
     "pocketminer_volume": {
@@ -158,6 +155,10 @@ if __name__ == "__main__":
     for sim_name in sim_names:
         for name, analysis_objs in analyses.items():
             os.makedirs(f"{output_dir}/{name}", exist_ok=True)
+            continue_prev = False
+            for i in range(n_kids):
+                continue_prev = os.path.exists(f"{output_dir}/{name}/{sim_name}/gen0/kid{i}/frame0.xtc")
+                if continue_prev: break
             AdaptiveSampling(
                 # Generated from equilibration
                 # See inputs/README.md
@@ -195,7 +196,7 @@ if __name__ == "__main__":
                     # Generated from equilibration
                     # See inputs/README.md; inputs/save_inds.py
                     atom_indices=f"{input_dir}/{sim_name}_atom_indices.dat",
-                    n_procs=n_cpus,
+                    n_procs=n_cpus_cpuheavy,
                 ),
                 save_state_obj=save_state_obj,
                 continue_prev=continue_prev,
@@ -204,7 +205,7 @@ if __name__ == "__main__":
                 q_check_obj_sim=SlurmWrap(),
                 sub_obj=SlurmSub(
                     normal_queue,
-                    n_cpus=n_cpus,
+                    n_cpus=n_cpus_cpuheavy,
                     job_name=f"SlurmSub_{sim_name}_{name}_AdaptiveSampling",
                 ),
                 analysis_obj=analysis_objs["analysis"],
