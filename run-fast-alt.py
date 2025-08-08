@@ -2,7 +2,7 @@
 
 #### Resources (pre-import)
 
-n_cpus_preimport = 24
+n_cpus_preimport = 16
 
 # Imports
 os.environ["NUMEXPR_MAX_THREADS"] = n_cpus_preimport
@@ -33,7 +33,7 @@ env_setup_path = "./env"
 
 # The SLURM queues to use for CPU / GPU work
 normal_queue = "amdcpu"
-gpu_queue = "a5a,a5000"
+gpu_queue = "a5a,a5000,p100,qr6"
 
 # The number of threads to request for parallelizable tasks
 n_cpus = n_cpus_preimport
@@ -152,63 +152,67 @@ analyses = {
 
 
 if __name__ == "__main__":
-    for sim_name in sim_names:
-        for name, analysis_objs in analyses.items():
-            os.makedirs(f"{output_dir}/{name}", exist_ok=True)
-            continue_prev = False
-            for i in range(n_kids):
-                continue_prev = os.path.exists(f"{output_dir}/{name}/{sim_name}/gen0/kid{i}/frame0.xtc")
-                if continue_prev: break
-            AdaptiveSampling(
-                # Generated from equilibration
-                # See inputs/README.md
-                f"{input_dir}/{sim_name}-start.gro",
-                n_gens=n_gens,
-                n_kids=n_kids,
-                sim_obj=Gromacs(
-                    # Generated from equilibration
-                    # See inputs/README.md
-                    top_file=f"{input_dir}/{sim_name}.top",
-                    # Copied from "/mnt/pure/bowmanlab/WG-shahlo/projects/Ab_dynamics/simulations/pr-50ns.mdp"
-                    # TODO: Documentation
-                    mdp_file=f"{input_dir}/pr-50ns.mdp",
-                    # TODO: Documentation
-                    itp_files=None,
-                    # TODO: ???
-                    pin="on",
-                    n_cpus=n_cpus,
-                    n_gpus=n_gpus,
-                    setup_path=env_setup_path,
-                    processing_obj=processing_obj,
-                    submission_obj=SlurmSub(
-                        gpu_queue,
-                        n_tasks=n_cpus,
-                        gpus=n_gpus,
-                    ),
-                ),
-                cluster_obj=ClusterWrap(
-                    base_clust_obj=base_clust_obj,
-                    # Generated from equilibration
-                    # See inputs/README.md
-                    base_struct=f"{input_dir}/{sim_name}-prot-masses.pdb",
-                    # The atom indices (with respect to prot_masses) you want to use to cluster between rounds of FAST
-                    # Backbone atoms are a solid default choice.
-                    # Generated from equilibration
-                    # See inputs/README.md; inputs/save_inds.py
-                    atom_indices=f"{input_dir}/{sim_name}_atom_indices.dat",
-                    n_procs=n_cpus_cpuheavy,
-                ),
-                save_state_obj=save_state_obj,
-                continue_prev=continue_prev,
-                update_freq=update_freq,
-                q_check_obj=SlurmWrap(),
-                q_check_obj_sim=SlurmWrap(),
-                sub_obj=SlurmSub(
-                    normal_queue,
-                    n_cpus=n_cpus_cpuheavy,
-                    job_name=f"SlurmSub_{sim_name}_{name}_AdaptiveSampling",
-                ),
-                analysis_obj=analysis_objs["analysis"],
-                ranking_obj=analysis_objs["ranking"],
-                output_dir=f"{output_dir}/{name}/{sim_name}",
-            ).run()
+    task_id = os.environ["SLURM_ARRAY_TASK_ID"]
+    sim_name = sim_names[task_id % len(sim_names)]
+    anl_names = list(analyses.keys()).sort()
+    anl_name = anl_names[task_id // len(sim_names)]
+    analysis_objs = analyses[anl_name]
+
+    os.makedirs(f"{output_dir}/{name}", exist_ok=True)
+    continue_prev = False
+    for i in range(n_kids):
+        continue_prev = os.path.exists(f"{output_dir}/{anl_name}/{sim_name}/gen0/kid{i}/frame0.xtc")
+        if continue_prev: break
+    AdaptiveSampling(
+        # Generated from equilibration
+        # See inputs/README.md
+        f"{input_dir}/{sim_name}-start.gro",
+        n_gens=n_gens,
+        n_kids=n_kids,
+        sim_obj=Gromacs(
+            # Generated from equilibration
+            # See inputs/README.md
+            top_file=f"{input_dir}/{sim_name}.top",
+            # Copied from "/mnt/pure/bowmanlab/WG-shahlo/projects/Ab_dynamics/simulations/pr-50ns.mdp"
+            # TODO: Documentation
+            mdp_file=f"{input_dir}/pr-50ns.mdp",
+            # TODO: Documentation
+            itp_files=None,
+            # TODO: ???
+            pin="on",
+            n_cpus=n_cpus,
+            n_gpus=n_gpus,
+            setup_path=env_setup_path,
+            processing_obj=processing_obj,
+            submission_obj=SlurmSub(
+                gpu_queue,
+                n_tasks=n_cpus,
+                gpus=n_gpus,
+            ),
+        ),
+        cluster_obj=ClusterWrap(
+            base_clust_obj=base_clust_obj,
+            # Generated from equilibration
+            # See inputs/README.md
+            base_struct=f"{input_dir}/{sim_name}-prot-masses.pdb",
+            # The atom indices (with respect to prot_masses) you want to use to cluster between rounds of FAST
+            # Backbone atoms are a solid default choice.
+            # Generated from equilibration
+            # See inputs/README.md; inputs/save_inds.py
+            atom_indices=f"{input_dir}/{sim_name}_atom_indices.dat",
+            n_procs=n_cpus_cpuheavy,
+        ),
+        save_state_obj=save_state_obj,
+        continue_prev=continue_prev,
+        update_freq=update_freq,
+        q_check_obj=SlurmWrap(),
+        q_check_obj_sim=SlurmWrap(),
+        sub_obj=SlurmSub(
+            normal_queue,
+            n_cpus=n_cpus_cpuheavy,
+            job_name=f"SlurmSub_{sim_name}_{anl_name}_AdaptiveSampling",
+        ),
+        analysis_obj=analysis_objs["analysis"],
+        ranking_obj=analysis_objs["ranking"],
+        output_dir=f"{output_dir}/{anl_name}/{sim_name}",
+    ).run()

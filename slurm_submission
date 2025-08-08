@@ -7,5 +7,9 @@
 #SBATCH --partition=amdcpu
 #SBATCH --ntasks=1
 
+# array
+# change this to the number of array elements you actually need
+#SBATCH --array=0-5
+
 source ./env
 python run-fast-alt.py
