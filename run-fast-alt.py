@@ -188,6 +188,7 @@ if __name__ == "__main__":
                 gpu_queue,
                 n_tasks=n_cpus,
                 gpus=n_gpus,
+                nice="10000",
             ),
         ),
         cluster_obj=ClusterWrap(
@@ -211,6 +212,7 @@ if __name__ == "__main__":
             normal_queue,
             n_cpus=n_cpus_cpuheavy,
             job_name=f"SlurmSub_{sim_name}_{anl_name}_AdaptiveSampling",
+            nice="10000",
         ),
         analysis_obj=analysis_objs["analysis"],
         ranking_obj=analysis_objs["ranking"],
