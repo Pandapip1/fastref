@@ -150,11 +150,11 @@ analyses = {
     },
 }
 
-
 if __name__ == "__main__":
     task_id = int(os.environ["SLURM_ARRAY_TASK_ID"])
     sim_name = sim_names[task_id % len(sim_names)]
-    anl_names = list(analyses.keys()).sort()
+    anl_names = list(analyses.keys())
+    anl_names.sort()
     anl_name = anl_names[task_id // len(sim_names)]
     analysis_objs = analyses[anl_name]
     print(f"I am task ID {task_id} runing simulation name {sim_name} and analysis name {anl_name}")
