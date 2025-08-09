@@ -16,7 +16,7 @@ from fast.sampling import rankings, scalings
 from fast.submissions.slurm_subs import SlurmSub, SlurmWrap
 from fast.analysis.pockets import PocketWrap
 from fast.analysis.pocketminer import PMExpectedVolumeWrap
-from pypocketminer.models.mqa_model import MQAModel
+from pypocketminer.models.pretrained import pocketminer_v1
 
 #### General
 
@@ -133,16 +133,8 @@ analyses = {
             width=0.36,
         ),
         "analysis": PMExpectedVolumeWrap(
-            # Path to pretrained PocketMiner checkpoint
-            nn_path=f"{input_dir}/pocketminer_pretrained/pocketminer.index",
             # The model corresponding to the checkpoint
-            model=MQAModel(
-                node_features=(8, 50),
-                edge_features=(1, 32),
-                hidden_dim=(16, 100),
-                num_layers=4,
-                dropout=0.1,
-            ),
+            model=pocketminer_v1,
             # 1 for simple sum; 2 for sum of sqaures.
             # You can technically put whatever power you want here
             power=1,
