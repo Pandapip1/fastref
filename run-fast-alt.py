@@ -143,10 +143,17 @@ analyses = {
 }
 
 if __name__ == "__main__":
-    task_id = int(os.environ["SLURM_ARRAY_TASK_ID"])
-    sim_name = sim_names[task_id % len(sim_names)]
     anl_names = list(analyses.keys())
     anl_names.sort()
+    if "SHOW_ANL_NAMES" in os.environ:
+        for i in range(len(anl_names) * len(sim_names)):
+            sim_name = sim_names[task_id % len(sim_names)]
+            anl_name = anl_names[task_id // len(sim_names)]
+            analysis_objs = analyses[anl_name]
+            print(f"Task ID {task_id} runs simulation name {sim_name} and analysis name {anl_name}")
+        exit(0)
+    task_id = int(os.environ["SLURM_ARRAY_TASK_ID"])
+    sim_name = sim_names[task_id % len(sim_names)]
     anl_name = anl_names[task_id // len(sim_names)]
     analysis_objs = analyses[anl_name]
     print(f"I am task ID {task_id} runing simulation name {sim_name} and analysis name {anl_name}")
@@ -209,5 +216,6 @@ if __name__ == "__main__":
         ),
         analysis_obj=analysis_objs["analysis"],
         ranking_obj=analysis_objs["ranking"],
+        addl_analysis_objs=[analysis_objs[key] for key in analysis_objs if key != anl_name]
         output_dir=f"{output_dir}/{anl_name}/{sim_name}",
     ).run()
