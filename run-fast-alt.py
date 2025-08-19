@@ -15,7 +15,7 @@ from fast.msm_gen import ClusterWrap
 from fast.sampling import rankings, scalings
 from fast.submissions.slurm_subs import SlurmSub, SlurmWrap
 from fast.analysis.pockets import PocketWrap
-from fast.analysis.pocketminer import PMExpectedVolumeWrap
+from fast.analysis.pocketminer import PMExpectedVolumeWrap, PMExpectedVolumeWrapWithBase, PMLikelihoodSumWrap
 from pypocketminer.models.pretrained import pocketminer_v1
 
 #### General
