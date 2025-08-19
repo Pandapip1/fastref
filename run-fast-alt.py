@@ -24,7 +24,7 @@ from pypocketminer.models.pretrained import pocketminer_v1
 input_dir = "./inputs"
 
 # The output directory. Generally, keep this as-is.
-output_dir = "./FAST_OUTv2"
+output_dir = "./FAST_OUT"
 
 # This file is sourced before every run. Set up the environment using this.
 env_setup_path = "./env"

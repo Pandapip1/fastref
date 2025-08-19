@@ -9,7 +9,7 @@
 
 # array
 # change this to the number of array elements you actually need
-#SBATCH --array=0-5
+#SBATCH --array=0-11
 
 source ./env
 python run-fast-alt.py
