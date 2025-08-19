@@ -24,7 +24,7 @@ from pypocketminer.models.pretrained import pocketminer_v1
 input_dir = "./inputs"
 
 # The output directory. Generally, keep this as-is.
-output_dir = "./FAST_OUT"
+output_dir = "./FAST_OUTv2"
 
 # This file is sourced before every run. Set up the environment using this.
 env_setup_path = "./env"
@@ -133,6 +133,42 @@ analyses = {
             width=0.36,
         ),
         "analysis": PMExpectedVolumeWrap(
+            # The model corresponding to the checkpoint
+            model=pocketminer_v1,
+            # 1 for simple sum; 2 for sum of sqaures.
+            # You can technically put whatever power you want here
+            power=1,
+        ),
+    },
+    "pocketminer_volume_with_base": {
+        "ranking": rankings.FAST(
+            # Maximize pocket volume
+            directed_scaling=scalings.feature_scale(maximize=True),
+            # Use RMSD to compare distances
+            distance_metric=md.rmsd,
+            # This is the gaussian spread that is used to distinguish between states.
+            width=0.36,
+        ),
+        "analysis": PMExpectedVolumeWrapWithBase(
+            # The base structure
+            base_top=os.path.abspath(f"{input_dir}/{sim_name}.pdb"),
+            # The model corresponding to the checkpoint
+            model=pocketminer_v1,
+            # 1 for simple sum; 2 for sum of sqaures.
+            # You can technically put whatever power you want here
+            power=1,
+        ),
+    },
+    "pocketminer_likelihood_sum": {
+        "ranking": rankings.FAST(
+            # Maximize pocket volume
+            directed_scaling=scalings.feature_scale(maximize=True),
+            # Use RMSD to compare distances
+            distance_metric=md.rmsd,
+            # This is the gaussian spread that is used to distinguish between states.
+            width=0.36,
+        ),
+        "analysis": PMLikelihoodSumWrap(
             # The model corresponding to the checkpoint
             model=pocketminer_v1,
             # 1 for simple sum; 2 for sum of sqaures.
