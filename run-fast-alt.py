@@ -252,6 +252,6 @@ if __name__ == "__main__":
         ),
         analysis_obj=analysis_objs["analysis"],
         ranking_obj=analysis_objs["ranking"],
-        addl_analysis_objs=[analysis_objs[key] for key in analysis_objs if key != anl_name]
+        addl_analysis_objs=[analysis_objs[key] for key in analysis_objs if key != anl_name],
         output_dir=f"{output_dir}/{anl_name}/{sim_name}",
     ).run()
