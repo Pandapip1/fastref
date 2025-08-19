@@ -149,7 +149,7 @@ analyses = {
             # This is the gaussian spread that is used to distinguish between states.
             width=0.36,
         ),
-        "analysis": PMExpectedVolumeWrapWithBase(
+        "analysis": lambda sim_name: PMExpectedVolumeWrapWithBase(
             # The base structure
             base_top=os.path.abspath(f"{input_dir}/{sim_name}.pdb"),
             # The model corresponding to the checkpoint
@@ -250,7 +250,7 @@ if __name__ == "__main__":
             job_name=f"SlurmSub_{sim_name}_{anl_name}_AdaptiveSampling",
             nice="10000",
         ),
-        analysis_obj=analysis_objs["analysis"],
+        analysis_obj=analysis_objs["analysis"](sim_name) if callable(analysis_objs["analysis"]) else analysis_objs["analysis"],
         ranking_obj=analysis_objs["ranking"],
         addl_analysis_objs=[analysis_objs[key] for key in analysis_objs if key != anl_name],
         output_dir=f"{output_dir}/{anl_name}/{sim_name}",
