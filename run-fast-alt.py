@@ -183,10 +183,10 @@ if __name__ == "__main__":
     anl_names.sort()
     if "SHOW_ANL_NAMES" in os.environ:
         for i in range(len(anl_names) * len(sim_names)):
-            sim_name = sim_names[task_id % len(sim_names)]
-            anl_name = anl_names[task_id // len(sim_names)]
+            sim_name = sim_names[i % len(sim_names)]
+            anl_name = anl_names[i // len(sim_names)]
             analysis_objs = analyses[anl_name]
-            print(f"Task ID {task_id} runs simulation name {sim_name} and analysis name {anl_name}")
+            print(f"Task ID {i} runs simulation name {sim_name} and analysis name {anl_name}")
         exit(0)
     task_id = int(os.environ["SLURM_ARRAY_TASK_ID"])
     sim_name = sim_names[task_id % len(sim_names)]
