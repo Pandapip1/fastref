@@ -1,2 +1,5 @@
 .venv
-
+**/gen*/kid*/*.xtc
+**/msm/trajectories
+**/msm/trajectories_full
+**/msm/submissions/analysis*.out**
