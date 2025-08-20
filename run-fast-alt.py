@@ -252,6 +252,6 @@ if __name__ == "__main__":
         ),
         analysis_obj=analysis_objs["analysis"](sim_name) if callable(analysis_objs["analysis"]) else analysis_objs["analysis"],
         ranking_obj=analysis_objs["ranking"],
-        addl_analysis_objs=[analysis_objs[key] for key in analysis_objs if key != anl_name],
+        addl_analysis_objs=[analyses[key]["analysis"](sim_name) if callable(analyses[key]["analysis"]) else analyses[key]["analysis"] for key in analyses if key != anl_name],
         output_dir=f"{output_dir}/{anl_name}/{sim_name}",
     ).run()
