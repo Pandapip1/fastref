@@ -149,9 +149,7 @@ analyses = {
             # This is the gaussian spread that is used to distinguish between states.
             width=0.36,
         ),
-        "analysis": lambda sim_name: PMExpectedVolumeWrapWithBase(
-            # The base structure
-            base_top=os.path.abspath(f"{input_dir}/{sim_name}.pdb"),
+        "analysis": PMExpectedVolumeWrapWithBase(
             # The model corresponding to the checkpoint
             model=pocketminer_v1,
             # 1 for simple sum; 2 for sum of sqaures.
